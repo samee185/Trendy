@@ -1,3 +1,12 @@
+  const toggleSubCategory = (e) => {
+    if (subCategory.includes(e.target.value)) {
+      // If subcategory is already selected, remove it
+      setSubCategory(subCategory.filter((item) => item !== e.target.value));
+    } else {
+      // Otherwise, add the subcategory to the selection
+      setSubCategory([...subCategory, e.target.value]);
+    }
+  };
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
           {filterProducts.map((item, index) => (
             <ProductItem
