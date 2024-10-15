@@ -34,6 +34,21 @@
     // Update filtered products to display
     setFilterProducts(filteredProducts);
   };
+  const sortProducts = () => {
+    let sortedProducts = [...filterProducts]; // Create a copy of filtered products
+
+    // Sort by price: low to high
+    if (sortType === "low-high") {
+      sortedProducts.sort((a, b) => a.price - b.price);
+    }
+    // Sort by price: high to low
+    else if (sortType === "high-low") {
+      sortedProducts.sort((a, b) => b.price - a.price);
+    }
+
+    // Update filtered products with the sorted list
+    setFilterProducts(sortedProducts);
+  };
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
           {filterProducts.map((item, index) => (
             <ProductItem
