@@ -49,6 +49,22 @@
     // Update filtered products with the sorted list
     setFilterProducts(sortedProducts);
   };
+  const handleSortChange = (e) => {
+    setSortType(e.target.value); // Update sort type state, which will trigger re-sorting
+  };
+
+  // Use effect to apply sorting whenever the sort type changes
+  useEffect(() => {
+    if (sortType !== "relevant") {
+      sortProducts(); // Sort products based on the current sort type
+    }
+  }, [sortType]); // Dependency on sortType ensures sorting happens when it changes
+
+  // Use effect to apply filters whenever the selected category or subcategory changes
+  useEffect(() => {
+    applyFilter(); // Apply filters whenever category or subcategory state changes
+  }, [category, subCategory,searchTerm, setSearchTerm]); // Dependency on category and subCategory ensures filtering happens when they change
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
           {filterProducts.map((item, index) => (
             <ProductItem
