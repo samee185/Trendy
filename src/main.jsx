@@ -7,10 +7,10 @@ import ShopContextProvider from "./context/ShopContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ShopContextProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ShopContextProvider>
         <App />
-      </BrowserRouter>
-    </ShopContextProvider>
+      </ShopContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
