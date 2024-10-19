@@ -12,6 +12,23 @@ const ShopContextProvider = (props) => {
   // State for search functionality
   const [searchTerm, setSearchTerm] = useState("");
   const [showSearch, setShowSearch] = useState(false);
+  const getCartAmount = () => {
+    let totalAmount = 0;
+    for (const items in cartingTerm) {
+      let itemInfo = products.find((item) => item._id === items);
+      for (const item in cartingTerm[items]) {
+        try {
+          if (cartingTerm[items][item] > 0) {
+            totalAmount += itemInfo.price * cartingTerm[items][item];
+          }
+        } catch (error) {}
+      }
+      // if(itemInfo){
+      //   totalAmount += itemInfo.price * cartingTerm[items][size];
+      // }
+    }
+    return totalAmount;
+  };
 
   // Value object to be provided to context consumers
   const value = {
