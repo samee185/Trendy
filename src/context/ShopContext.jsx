@@ -1,5 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { products } from "../assets/assets";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 // Create a context for the shop
 export const ShopContext = createContext();
@@ -12,6 +14,37 @@ const ShopContextProvider = (props) => {
   // State for search functionality
   const [searchTerm, setSearchTerm] = useState("");
   const [showSearch, setShowSearch] = useState(false);
+
+  // state for carting functionality
+  const [cartingTerm, setCartingTerm] = useState({});
+
+  const navigate = useNavigate();
+
+  const addToCart = async (itemId, size) => {
+    if (!size) {
+      toast.error("Please select a size");
+      return;
+    }
+    let cartData = structuredClone(cartingTerm);
+
+    if (cartData[itemId]) {
+      if (cartData[itemId][size]) {
+        cartData[itemId][size] += 1;
+      } else {
+        cartData[itemId][size] = 1;
+      }
+    } else {
+      cartData[itemId] = {}; // Updated from `cartData[item]` to `cartData[itemId]`
+      cartData[itemId][size] = 1; // Initialize size if it doesn't exist yet
+    }
+
+    setCartingTerm(cartData);
+  };
+
+  useEffect(() => {
+    console.log(cartingTerm);
+  }, [cartingTerm]);
+
   const getCartCount = () => {
     let totalCount = 0;
     for (let item in cartingTerm) {
@@ -24,6 +57,7 @@ const ShopContextProvider = (props) => {
     }
     return totalCount; // Ensure the count is returned
   };
+
   const getCartAmount = () => {
     let totalAmount = 0;
     for (const items in cartingTerm) {
@@ -41,6 +75,11 @@ const ShopContextProvider = (props) => {
     }
     return totalAmount;
   };
+  const updateQuantity = async (itemId, size, quantity) => {
+    let cartData = structuredClone(cartingTerm);
+    cartData[itemId][size] = quantity;
+    setCartingTerm(cartData);
+  };
 
   // Value object to be provided to context consumers
   const value = {
@@ -51,15 +90,18 @@ const ShopContextProvider = (props) => {
     setSearchTerm,
     showSearch,
     setShowSearch,
+    cartingTerm,
+    addToCart,
+    getCartCount,
+    updateQuantity,
+    getCartAmount,
+    navigate,
   };
 
   // Provide the context value to child components
   return (
-    <ShopContext.Provider value={value}>
-      {props.children}
-    </ShopContext.Provider>
+    <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
   );
 };
 
 export default ShopContextProvider;
-
