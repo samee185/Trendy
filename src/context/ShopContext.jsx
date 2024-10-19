@@ -12,6 +12,18 @@ const ShopContextProvider = (props) => {
   // State for search functionality
   const [searchTerm, setSearchTerm] = useState("");
   const [showSearch, setShowSearch] = useState(false);
+  const getCartCount = () => {
+    let totalCount = 0;
+    for (let item in cartingTerm) {
+      for (let size in cartingTerm[item]) {
+        // Add only once to the total count
+        if (cartingTerm[item][size] > 0) {
+          totalCount += cartingTerm[item][size];
+        }
+      }
+    }
+    return totalCount; // Ensure the count is returned
+  };
   const getCartAmount = () => {
     let totalAmount = 0;
     for (const items in cartingTerm) {
