@@ -12,7 +12,9 @@ const Navbar = () => {
   return (
     <div className="flex items-center justify-between py-5 font-medium">
       <Link to={"/"}>
-        <img src={logo} className="w-10 bg-black " alt="Logo" />
+        <div className="p-2 rounded-full shadow-lg">
+          <img src={logo} className="w-10" alt="Logo" />
+        </div>
       </Link>
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
@@ -42,7 +44,7 @@ const Navbar = () => {
           className="w-5 cursor-pointer"
         />
         <div className="group relative">
-          <Link to={'/login'}>
+          <Link to={"/login"}>
             <img
               src={assets.profile_icon}
               alt=""
