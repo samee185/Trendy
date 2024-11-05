@@ -13,11 +13,13 @@ import Footer from "./components/Footer";
 import SearchBar from "./components/searchBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AuthProvider from "./context/AuthContext";
 
 function App() {
   return (
     <>
       <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] bg-purple-300">
+        <AuthProvider>
         <ToastContainer />
         <Navbar />
         <SearchBar />
@@ -34,6 +36,7 @@ function App() {
           <Route path="/orders" element={<Orders />} />
         </Routes>
         <Footer />
+        </AuthProvider>
       </div>
     </>
   );

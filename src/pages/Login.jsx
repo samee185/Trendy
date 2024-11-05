@@ -1,103 +1,151 @@
-import React, { useState, useContext } from "react";
-import { ShopContext } from "../context/ShopContext"; // Update the path as needed
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+  Spinner,
+} from "@material-tailwind/react";
+import logo from "../assets/logo2.png";
+import { useAuth } from "../context/AuthContext";
+import authImg from "../assets/contact_img.png";
+import UseShowPassword from "../hooks/UseShowPassword";
+import { Link } from "react-router-dom";
+const LogIn = () => {
+  const { login, loading } = useAuth();
+  const { showPassword, handleShowPassword } = UseShowPassword();
 
-const Login = () => {
-  const [currentState, setCurrentState] = useState("Sign Up");
-  const { login, signup } = useContext(ShopContext); // Access login and signup functions
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    // form validation
 
-  // State to manage input fields
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const onSubmithandle = (event) => {
-    event.preventDefault();
-  
-    // Basic validation for inputs
-    if (currentState === "Sign Up" && !name) {
-      toast.error("Name is required"); // Ensure the name is provided
-      return;
-    }
-  
-    if (!email || !password) {
-      toast.error("Email and Password are required"); // Ensure email and password are provided
-      return;
-    }
-  
-    // Handle login or signup based on the currentState
-    if (currentState === "Login") {
-      login(email, password); // Call login function
-    } else {
-      signup(name, email, password); // Call signup function
-    }
-  };
-  
-
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("Invalid email address")
+        .required("Email is required"),
+      password: Yup.string().required("Password is required"),
+    }),
+    onSubmit: async (values) => {
+      console.log(values);
+      await login(values);
+    },
+  });
   return (
-    <form
-      onSubmit={onSubmithandle}
-      className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800"
-    >
-      <div className="inline-flex items-center gap-2 mb-2 mt-10">
-        <p className="prata-regular text-3xl">{currentState}</p>
-        <hr className="border-none h-[1.5px] w-8 bg-gray-800" />
-      </div>
-
-      {currentState === "Sign Up" && (
-        <input
-          type="text"
-          className="w-full px-3 py-2 border border-gray-800"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-      )}
-
-      <input
-        type="email"
-        className="w-full px-3 py-2 border border-gray-800"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        className="w-full px-3 py-2 border border-gray-800"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-
-      <div className="w-full flex justify-between text-sm mt-[-8px]">
-        <p className="cursor-pointer">Forgot your password</p>
-        {currentState === "Login" ? (
-          <p
-            onClick={() => setCurrentState("Sign Up")}
-            className="cursor-pointer"
+    <>
+      <div className="bg-[white] flex items-center lg:gap-10 px-4 lg:px-0 ">
+        <div className="hidden lg:block lg:basis-1/2 h-[100vh] overflow-hidden ">
+          <img src={authImg} alt="heroimage" className="object-cover" />
+        </div>
+        <div className="basis-full lg:basis-1/2 px-4 h-[100vh] ">
+          <Card
+            color="transparent"
+            shadow={false}
+            className="w-full px-4 py-2 md:px-6 md:py-6"
           >
-            Create Account
-          </p>
-        ) : (
-          <p
-            onClick={() => setCurrentState("Login")}
-            className="cursor-pointer"
-          >
-            Login Here
-          </p>
-        )}
-      </div>
+            <div className="flex justify-center mb-8">
+              <Link to={"/"}>
+                <div className="flex items-center">
+                  <img src={logo} alt="bustixlogo" className="h-24 " />
+                  <span className="ml-[-45px] mb-[-45px] text-[20px] font-semibold text-purple-800">
+                    Login to Continue
+                  </span>
+                </div>
+              </Link>
+            </div>
+            <form
+              onSubmit={formik.handleSubmit}
+              className="mt-8 mb-2 w-full max-w-md mx-auto"
+            >
+              <div className="mb-1 flex flex-col gap-6">
+                <div>
+                  <Typography
+                    variant="h6"
+                    className="mb-3 text-purple-800"
+                  >
+                    Email
+                  </Typography>
+                  <Input
+                    size="lg"
+                    placeholder="name@mail.com"
+                    className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                    labelProps={{
+                      className: "before:content-none after:content-none",
+                    }}
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    name="email"
+                  />
+                  {formik.touched.email && formik.errors.email && (
+                    <p className="text-red-300">{formik.errors.email}</p>
+                  )}
+                </div>
+                <div className="relative">
+                  <Typography
+                    variant="h6"
+                    className="mb-3 text-purple-800"
+                  >
+                    Password
+                  </Typography>
+                  <Input
+                    type={`${showPassword ? "text" : "password"}`}
+                    size="lg"
+                    placeholder="********"
+                    className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                    labelProps={{
+                      className: "before:content-none after:content-none",
+                    }}
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    name="password"
+                  />
+                  <span className="absolute top-[50px] right-[25px] cursor-pointer">
+                    {showPassword ? (
+                      <FaEye
+                        color="gray"
+                        size={20}
+                        onClick={handleShowPassword}
+                      />
+                    ) : (
+                      <FaEyeSlash
+                        color="gray"
+                        size={20}
+                        onClick={handleShowPassword}
+                      />
+                    )}
+                  </span>
+                  {formik.touched.password && formik.errors.password && (
+                    <p className="text-red-300">{formik.errors.password}</p>
+                  )}
+                </div>
+              </div>
+              <Button
+                type="submit"
+                className="mt-6 w-full bg-purple-800 "
+                fullWidth
+                disabled={loading}
+              >
+                {loading ? <Spinner color="gray" /> : "Login"}
+              </Button>
 
-      <button
-        type="submit"
-        className="bg-black text-white font-light px-8 py-2 mt-4"
-      >
-        {currentState === "Login" ? "Sign In" : "Sign Up"}
-      </button>
-    </form>
+              <p className="mt-3">
+                Don't have an account ?{" "}
+                <Link to={"/signup"}>
+                  <span className="underline text-purple=800 font-bold">Register Now</span>
+                </Link>{" "}
+              </p>
+            </form>
+          </Card>
+        </div>
+      </div>
+    </>
   );
 };
 
-export default Login;
+export default LogIn;
