@@ -224,7 +224,7 @@ const Collection = () => {
             <ProductItem
               key={index} // Unique key for each product
               id={item._id}
-              name={item.title}
+              title={item.title}
               price={item.price}
               image={item.images?.[0] || "default-image-url.jpg"} // Fallback if `images` is empty
             />
