@@ -14,6 +14,7 @@ import SearchBar from "./components/searchBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from "./context/AuthContext";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/place-order" element={<PlaceOrder />} />
           <Route path="/orders" element={<Orders />} />
         </Routes>
