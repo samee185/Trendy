@@ -29,7 +29,7 @@ const RelatedProduct = ({ category, subcategory }) => {
           <ProductItem
             key={index}
             id={item._id}
-            name={item.name} // Assuming 'name' is the title of the product
+            name={item.title} // Assuming 'name' is the title of the product
             price={item.price}
             image={item.images && item.images[0]} // Use images[0] if 'images' is an array
           />

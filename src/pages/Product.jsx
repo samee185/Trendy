@@ -13,6 +13,9 @@ const Product = () => {
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
 
+  // Define available sizes manually
+  const availableSizes = ["S", "M", "L", "XL"];
+
   // console.log('size', productData.sizes);
   // console.log('size',productData.sizes);
 
@@ -75,17 +78,15 @@ const Product = () => {
           </p>
           <div className="flex flex-col gap-4 my-8">
             <p>Select Size</p>
-            <div className="">
-              <button className="border w-10 text-center">Xl</button>
-            </div>
+          
             <div className="flex gap-2">
-              {productData.sizes.map((item, index) => (
+              {availableSizes.map((item) => (
                 <button
                   onClick={() => setSize(item)}
                   className={`border py-2 px-4 bg-gray-100 ${
                     item === size ? "border-orange-500" : ""
                   }`}
-                  key={index}
+                  key={item}
                 >
                   {item}
                 </button>
