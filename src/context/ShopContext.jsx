@@ -8,9 +8,11 @@ import axios from "axios";
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-  // Constants
-  const currency = "$";
-  const delivery_fee = 10;
+
+  const currency = "₦";
+
+  const delivery_fee = 500;
+  const apiUrl = import.meta.env.VITE_API_URL ;
 
   // State for products
   const [products, setProducts] = useState([]);
