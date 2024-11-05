@@ -12,8 +12,11 @@ const SearchBar = () => {
 
   // Effect to update visibility based on route
   useEffect(() => {
-    setVisible(location.pathname.includes("collection"));
-  }, [location]);
+    const isCollectionPage = location.pathname.includes("collection");
+    setVisible(isCollectionPage);
+    setShowSearch(isCollectionPage); // Automatically show search if on collection page
+  }, [location, setShowSearch]);
+  
 
   // Render search bar only if showSearch is true and on the collection page
   return showSearch && visible ? (

@@ -13,24 +13,23 @@ const Product = () => {
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
 
-  // Define available sizes manually
+
   const availableSizes = ["S", "M", "L", "XL"];
 
-  // console.log('size', productData.sizes);
-  // console.log('size',productData.sizes);
+
 
   useEffect(() => {
     if (!loading && products.length > 0) {
       const foundProduct = products.find((item) => item._id === productId);
       if (foundProduct) {
         setProductData(foundProduct);
-        setImage(foundProduct.images[0]); // Ensure the key matches your product data structure
+        setImage(foundProduct.images[0]); 
       }
     }
   }, [loading, products, productId]);
 
   if (loading) {
-    return <div>Loading...</div>; // Add a loading indicator
+    return <div>Loading...</div>; 
   }
 
   return productData ? (
