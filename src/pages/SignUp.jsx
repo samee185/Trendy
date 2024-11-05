@@ -45,7 +45,7 @@ const SignUp = () => {
   });
   return (
     <>
-      <div className="bg-[rgba(37,127,230,0.3)] flex items-center lg:gap-10 px-4 lg:px-0 ">
+      <div className="bg-gray-100 flex items-center lg:gap-10 px-4 lg:px-4 rounded-lg ">
         <div className="hidden lg:block lg:basis-1/2">
           <img src={authImg} alt="heroimage" className="object-cover h-full" />
         </div>
@@ -56,23 +56,22 @@ const SignUp = () => {
             className="w-full p-4 md:p-6"
           >
             <Typography
-              variant="h4"
-              color="blue-gray"
-              className="text-center max-w-xs mx-auto"
+              variant="h3"
+              className="text-center text-purple-800 max-w-xs mx-auto"
             >
-              Welcome To Bustix
+              Registration Form
             </Typography>
             <Typography
               color="gray"
-              className="mt-1 font-normal text-center max-w-xs mx-auto"
+              className="mt-1 font-normal text-center text-purple-800 max-w-xs mx-auto"
             >
               Create Account To Continue
             </Typography>
             <form
               onSubmit={formik.handleSubmit}
-              className="mt-8 mb-2 w-full max-w-md mx-auto"
+              className="mt-4 w-full max-w-md mx-auto"
             >
-              <div className="mb-1 flex flex-col gap-6">
+              <div className="flex flex-col gap-6">
                 <div>
                   <Typography variant="h6" color="blue-gray" className="mb-3">
                     First Name

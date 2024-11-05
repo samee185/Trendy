@@ -38,10 +38,10 @@ const LogIn = () => {
   return (
     <>
       <div className="bg-[white] flex items-center lg:gap-10 px-4 lg:px-0 ">
-        <div className="hidden lg:block lg:basis-1/2 h-[100vh] overflow-hidden ">
+        <div className="hidden lg:block lg:basis-1/2 overflow-hidden ">
           <img src={authImg} alt="heroimage" className="object-cover" />
         </div>
-        <div className="basis-full lg:basis-1/2 px-4 h-[100vh] ">
+        <div className="basis-full lg:basis-1/2 px-4">
           <Card
             color="transparent"
             shadow={false}
@@ -137,7 +137,7 @@ const LogIn = () => {
               <p className="mt-3">
                 Don't have an account ?{" "}
                 <Link to={"/signup"}>
-                  <span className="underline text-purple=800 font-bold">Register Now</span>
+                  <span className="underline text-purple-800 font-bold">Register Now</span>
                 </Link>{" "}
               </p>
             </form>
