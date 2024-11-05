@@ -10,7 +10,7 @@ export const ShopContext = createContext();
 const ShopContextProvider = (props) => {
   // Constants
   const currency = "$";
-  const delivery_fee = 500;
+  const delivery_fee = 600;
   const apiUrl = import.meta.env.VITE_API_URL ;
 
   // State for products
