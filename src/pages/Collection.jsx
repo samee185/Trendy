@@ -44,11 +44,10 @@ const Collection = () => {
     // Filter by search term
     if (searchTerm) {
       filteredProducts = filteredProducts.filter((item) =>
-        item.name
-          ? item.name.toLowerCase().includes(searchTerm.toLowerCase())
-          : false
+        item.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
+    
 
     // Filter by selected categories
     if (category.length > 0) {

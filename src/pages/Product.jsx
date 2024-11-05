@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom"; // Import Link for navigation
 import { ShopContext } from "../context/ShopContext";
 import RelatedProduct from "../components/RelatedProduct";
 import { assets } from "../assets/assets";
@@ -7,34 +7,34 @@ import { assets } from "../assets/assets";
 const Product = () => {
   const { productId } = useParams();
   const { products, loading, currency, addToCart } = useContext(ShopContext);
-  console.log("items", products);
-
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
-
-  // Define available sizes manually
   const availableSizes = ["S", "M", "L", "XL"];
-
-  // console.log('size', productData.sizes);
-  // console.log('size',productData.sizes);
 
   useEffect(() => {
     if (!loading && products.length > 0) {
       const foundProduct = products.find((item) => item._id === productId);
       if (foundProduct) {
         setProductData(foundProduct);
-        setImage(foundProduct.images[0]); // Ensure the key matches your product data structure
+        setImage(foundProduct.images[0]); 
       }
     }
   }, [loading, products, productId]);
 
   if (loading) {
-    return <div>Loading...</div>; // Add a loading indicator
+    return <div>Loading...</div>;
   }
 
   return productData ? (
     <div className="border-t-2 transition-opacity ease-in duration-500 opacity-100">
+      {/* Back to Collection Button */}
+      <div className="mt-5 mb-5">
+        <Link to="/collection" className="inline-block bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">
+          &larr; Back to Collection
+        </Link>
+      </div>
+
       {/* Product Data Rendering */}
       <div className="mt-10 flex gap-12 sm:gap-12 flex-col sm:flex-row">
         {/* Product Images */}
@@ -54,6 +54,7 @@ const Product = () => {
             <img src={image} alt="" className="w-full h-auto" />
           </div>
         </div>
+        
         {/* Product Details */}
         <div className="flex-1">
           <h1 className="font-medium text-2xl mt-2">
@@ -107,6 +108,7 @@ const Product = () => {
           </div>
         </div>
       </div>
+      
       {/* Description and review Section */}
       <div className="mt-20">
         <div className="flex">
@@ -126,7 +128,7 @@ const Product = () => {
       />
     </div>
   ) : (
-    <div>No product found.</div> // Handle case where product data isn't found
+    <div>No product found.</div>
   );
 };
 
