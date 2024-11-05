@@ -10,8 +10,7 @@ export const ShopContext = createContext();
 const ShopContextProvider = (props) => {
   // Constants
   const currency = "$";
-  const delivery_fee = 500;
-  const apiUrl = import.meta.env.VITE_API_URL ;
+  const delivery_fee = 10;
 
   // State for products
   const [products, setProducts] = useState([]);
@@ -36,7 +35,7 @@ const ShopContextProvider = (props) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `${apiUrl}/products`
+          "https://trendynative-api.onrender.com/api/v1/products"
         );
         setProducts(response.data.data.products);
         console.log("Fetched products:", response.data.data.products);
@@ -57,7 +56,7 @@ const ShopContextProvider = (props) => {
       if (token) {
         try {
           const response = await axios.get(
-            `${apiUrl}/users/profile`,
+            "https://trendynative-api.onrender.com/api/v1/users/profile",
             {
               headers: { Authorization: `Bearer ${token}` },
             }

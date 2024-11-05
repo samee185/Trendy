@@ -10,7 +10,7 @@ const Cart = () => {
   const [cartDetails, setCartDetails] = useState([]);
 
   useEffect(() => {
-    // console.log("cartItems:", cartItems);
+    // console.log("cartingTerm:", cartingTerm);
     // console.log("products:", products);
 
     const tempData = [];
@@ -25,8 +25,13 @@ const Cart = () => {
         }
       }
     }
-    setCartDetails(tempData); // Update state with `tempData`
+    setCartDetails(tempData);
   }, [cartingTerm, products]);
+
+  // Ensure products are fetched before rendering cart items
+  if (products.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="border-t pt-14">
@@ -35,19 +40,22 @@ const Cart = () => {
       </div>
       <div>
         {cartDetails.map((item, index) => {
-          // Find the product by ID
           const productData = products.find(
             (product) => product._id === item._id
           );
 
-          // Check if productData exists before accessing its properties
           if (!productData) {
+            console.log(
+              `No matching product for cart item with ID: ${item._id}`
+            );
             return (
               <div key={index} className="py-4 text-red-500">
                 Product not found
               </div>
             );
           }
+
+          console.log("Rendering item:", productData);
 
           return (
             <div
@@ -56,15 +64,15 @@ const Cart = () => {
             >
               <div className="flex gap-6 items-center">
                 <img
-                  src={productData.image[0]}
-                  alt={productData.name}
+                  src={productData.images[0]} // Log the image to confirm it exists
+                  alt={productData.title}
                   className="w-20 sm:w-24"
                 />
                 <div className="flex flex-col">
-                  <p className="text-base sm:text-xl font-semibold">
-                    {productData.name}
+                  <p className="text-base sm:text-sm font-semibold">
+                    {productData.title}
                   </p>
-                  <p className="text-sm sm:text-base text-gray-500">
+                  <p className="text-sm sm:text-sm text-gray-500">
                     Size: {item.size}
                   </p>
                 </div>
@@ -72,7 +80,7 @@ const Cart = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-between sm:gap-4">
                 <div className="flex items-center gap-5">
-                  <p className="text-lg sm:text-xl font-medium">
+                  <p className="text-lg sm:text-sm font-medium">
                     {currency}
                     {productData.price}
                   </p>
@@ -89,7 +97,7 @@ const Cart = () => {
                           )
                         : null
                     }
-                    className="border rounded-md max-w-[60px] sm:max-w-[80px] text-center py-1 px-2"
+                    className="border rounded-md max-w-[40px] sm:max-w-[40px] text-center py-1 px-2"
                   />
                 </div>
               </div>
@@ -99,7 +107,7 @@ const Cart = () => {
                   onClick={() => updateQuantity(item._id, item.size, 0)}
                   src={assets.bin_icon}
                   alt="Remove item"
-                  className="w-5 sm:w-6 cursor-pointer"
+                  className="w-2 sm:w-4 cursor-pointer"
                 />
               </div>
             </div>
@@ -110,7 +118,7 @@ const Cart = () => {
       <div className="flex justify-end my-20">
         <div className="w-full sm:w-[450px]">
           <CartTotal />
-          <div className="w-full text-end ">
+          <div className="w-full text-end">
             <button
               onClick={() => navigate("/place-order")}
               className="bg-black text-white text-sm my-8  px-8 py-3"
