@@ -20,7 +20,7 @@ const Hero = () => {
             
            
               <p className="font-semibold text-sm md:text-base">
-                SHOP <span className="text-gray-300">NOW</span>
+                SHOP NOW
               </p>
             </Link>
 
