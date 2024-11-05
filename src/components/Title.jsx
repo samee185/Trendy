@@ -5,7 +5,7 @@ const Title = ({ text1, text2 }) => {
   return (
     <div className="inline-flex gap-2 items-center mb-3">
       {/* Text content with different styles for each part */}
-      <p className="text-gray-500">
+      <p className="text-gray-200">
         {text1} <span className="text-gray-700 font-medium">{text2}</span>
       </p>
       {/* Decorative line element */}
@@ -15,4 +15,3 @@ const Title = ({ text1, text2 }) => {
 };
 
 export default Title;
-

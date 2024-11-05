@@ -11,12 +11,18 @@ const BestSeller = () => {
   const [bestSeller, setBestSeller] = useState([]);
 
   // Effect to filter and set best seller products
-  useEffect(() => {
+  // useEffect(() => {
     // Filter products marked as bestseller
-    const bestProduct = products.filter((item) => item.bestseller);
+    // const bestProduct = products.filter((item) => item.bestseller);
     // console.log('Best Sellers:', bestProduct);
     // Set up to 5 best seller products
-    setBestSeller(bestProduct.slice(0, 5));
+  //   setBestSeller(bestProduct.slice(0, 5));
+  // }, [products]);
+
+
+  useEffect(() => {
+    setBestSeller(products.slice(0, 5));
+    // console.log("Latest Products:", products.slice(0, 10)); // for debugging purposes
   }, [products]);
 
   return (
@@ -36,7 +42,7 @@ const BestSeller = () => {
             key={index}
             id={item._id}
             name={item.name}
-            image={item.image}
+            image={item.images?.[0] || "default-image-url.jpg"} // Fallback if `images` is empty
             price={item.price}
           />
         ))}

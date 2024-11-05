@@ -2,26 +2,24 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 
-// ProductItem component for displaying individual product details
 const ProductItem = ({ id, image, name, price }) => {
-  // Access currency from ShopContext
   const { currency } = useContext(ShopContext);
 
   return (
-    // Link to individual product page
-    <Link className="text-gray-700 cursor-pointer" to={`/product/${id}`}>
-      {/* Image container with hover effect */}
-      <div className="overflow-hidden">
+    <Link
+      className="text-gray-700 cursor-pointer flex flex-col items-center p-4 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white"
+      to={`/product/${id}`}
+    >
+      {/* Image container centered and with padding */}
+      <div className="w-full flex justify-center items-center h-48 overflow-hidden rounded-md bg-gray-100 p-2">
         <img
-          className="hover:scale-110 transition ease-in-out"
-          src={image[0]}
-          alt=""
+          className="w-48 h-48 object-contain transition-transform duration-300 ease-in-out"
+          src={image}
+          alt={name}
         />
       </div>
-      {/* Product name */}
-      <p className="pt-3 pb-1 text-sm">{name}</p>
-      {/* Product price with currency */}
-      <p className="text-sm font-medium">
+      <p className="mt-3 text-sm font-semibold text-center">{name}</p>
+      <p className="text-sm font-medium text-center">
         {currency}
         {price}
       </p>
@@ -30,4 +28,3 @@ const ProductItem = ({ id, image, name, price }) => {
 };
 
 export default ProductItem;
-

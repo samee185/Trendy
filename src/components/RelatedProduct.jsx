@@ -24,10 +24,16 @@ const RelatedProduct = ({ category, subcategory }) => {
       <div className="text-center text-3xl py-2">
         <Title text1={"RELATED"} text2={"PRODUCT"} />
       </div>
-      <div className="grid grid-col-2 sm:grid-cols-3 md:grid-clols-4 lg:grid-cols-5 gap-4 gap-y-6">
-    {related.map((item,index)=>(
-        <ProductItem key={index} id={item._id} name={item.name} price={item.price} image={item.image}/>
-    ))}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
+        {related.map((item, index) => (
+          <ProductItem
+            key={index}
+            id={item._id}
+            name={item.name} // Assuming 'name' is the title of the product
+            price={item.price}
+            image={item.images && item.images[0]} // Use images[0] if 'images' is an array
+          />
+        ))}
       </div>
     </div>
   );

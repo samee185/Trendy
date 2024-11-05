@@ -4,9 +4,8 @@ import Title from "./Title";
 import ProductItem from "./ProductItem";
 
 const LatestCollection = () => {
-  const { products } = useContext(ShopContext);
-  //   console.log(products);
-  const [LatestProducts, setLatestProducts] = useState([]);
+  const { products, loading } = useContext(ShopContext); // Access loading state
+  const [latestProducts, setLatestProducts] = useState([]);
 
   useEffect(() => {
     setLatestProducts(products.slice(0, 10));
@@ -21,18 +20,23 @@ const LatestCollection = () => {
           dolores quas libero magni! Ex officiis at corrupti ratione suscipit
         </p>
       </div>
-      {/* Rendering products */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
-        {LatestProducts.map((items, index) => (
-          <ProductItem
-            key={index}
-            id={items._id}
-            image={items.image}
-            name={items.name}
-            price={items.price}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <p className="text-center text-gray-500">Loading products...</p>
+      ) : latestProducts.length > 0 ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
+          {latestProducts.map((item) => (
+            <ProductItem
+              key={item._id}
+              id={item._id}
+              image={item.images?.[0]} // Safely access first image if exists
+              name={item.title}
+              price={item.price}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-gray-500">No products available</p>
+      )}
     </div>
   );
 };

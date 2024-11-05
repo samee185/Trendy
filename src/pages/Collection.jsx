@@ -6,7 +6,7 @@ import ProductItem from "../components/ProductItem";
 
 const Collection = () => {
   // Accessing products from context using the ShopContext
-  const { products,searchTerm, setSearchTerm } = useContext(ShopContext);
+  const { products, searchTerm, setSearchTerm } = useContext(ShopContext);
 
   // States for managing filter visibility, filtered products, selected categories, subcategories, and sort type
   const [showFilter, setShowfilter] = useState(false); // Show/hide filter section
@@ -44,9 +44,11 @@ const Collection = () => {
     // Filter by search term
     if (searchTerm) {
       filteredProducts = filteredProducts.filter((item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        item.name
+          ? item.name.toLowerCase().includes(searchTerm.toLowerCase())
+          : false
       );
-    }  
+    }
 
     // Filter by selected categories
     if (category.length > 0) {
@@ -65,6 +67,12 @@ const Collection = () => {
     // Update filtered products to display
     setFilterProducts(filteredProducts);
   };
+
+  // This useEffect will apply filters when searchTerm or filter settings change
+useEffect(() => {
+  applyFilter(); // Apply filters whenever searchTerm, category, or subCategory changes
+}, [category, subCategory, searchTerm]);
+
 
   // Sorting function based on the selected sort type (e.g., price)
   const sortProducts = () => {
@@ -98,10 +106,10 @@ const Collection = () => {
   // Use effect to apply filters whenever the selected category or subcategory changes
   useEffect(() => {
     applyFilter(); // Apply filters whenever category or subcategory state changes
-  }, [category, subCategory,searchTerm, setSearchTerm]); // Dependency on category and subCategory ensures filtering happens when they change
+  }, [category, subCategory, searchTerm, setSearchTerm]); // Dependency on category and subCategory ensures filtering happens when they change
 
   return (
-    <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
+    <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t h-full">
       {/* Filter section on the left */}
       <div className="min-w-60">
         <p
@@ -130,7 +138,7 @@ const Collection = () => {
               <input
                 type="checkbox"
                 className="w-3"
-                value={"Men"}
+                value={"men"}
                 onChange={toggleCategory} // Toggle category when checkbox changes
               />{" "}
               Men
@@ -139,7 +147,7 @@ const Collection = () => {
               <input
                 type="checkbox"
                 className="w-3"
-                value={"Women"}
+                value={"women"}
                 onChange={toggleCategory}
               />{" "}
               Women
@@ -148,7 +156,7 @@ const Collection = () => {
               <input
                 type="checkbox"
                 className="w-3"
-                value={"Kids"}
+                value={"kids"}
                 onChange={toggleCategory}
               />
               Kids
@@ -218,9 +226,9 @@ const Collection = () => {
             <ProductItem
               key={index} // Unique key for each product
               id={item._id}
-              name={item.name}
+              name={item.title}
               price={item.price}
-              image={item.image}
+              image={item.images?.[0] || "default-image-url.jpg"} // Fallback if `images` is empty
             />
           ))}
         </div>
