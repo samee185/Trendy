@@ -41,7 +41,7 @@ const BestSeller = () => {
           <ProductItem
             key={index}
             id={item._id}
-            name={item.name}
+            title={item.title}
             image={item.images?.[0] || "default-image-url.jpg"} // Fallback if `images` is empty
             price={item.price}
           />

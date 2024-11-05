@@ -29,7 +29,7 @@ const LatestCollection = () => {
               key={item._id}
               id={item._id}
               image={item.images?.[0]} // Safely access first image if exists
-              name={item.title}
+              title={item.title}
               price={item.price}
             />
           ))}

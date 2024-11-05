@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 
-const ProductItem = ({ id, image, name, price }) => {
+const ProductItem = ({ id, image, title, price }) => {
   const { currency } = useContext(ShopContext);
 
   return (
@@ -18,7 +18,7 @@ const ProductItem = ({ id, image, name, price }) => {
           alt={name}
         />
       </div>
-      <p className="mt-3 text-sm font-semibold text-center">{name}</p>
+      <p className="mt-3 text-sm font-semibold text-center">{title}</p>
       <p className="text-sm font-medium text-center">
         {currency}
         {price}
