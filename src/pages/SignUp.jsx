@@ -171,7 +171,7 @@ const SignUp = () => {
               </div>
               <Button
                 type="submit"
-                className="mt-6 w-full"
+                className="mt-6 w-full bg-purple-800"
                 fullWidth
                 disabled={loading}
               >
