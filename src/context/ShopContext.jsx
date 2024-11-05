@@ -131,8 +131,9 @@ const ShopContextProvider = (props) => {
       cartData[itemId] = {}; // Updated from `cartData[item]` to `cartData[itemId]`
       cartData[itemId][size] = 1; // Initialize size if it doesn't exist yet
     }
-
+    toast.success("Added to Cart !");
     setCartingTerm(cartData);
+    
   };
 
   useEffect(() => {
