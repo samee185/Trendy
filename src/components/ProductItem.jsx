@@ -7,7 +7,7 @@ const ProductItem = ({ id, image, title, price }) => {
 
   return (
     <Link
-      className="text-gray-700 cursor-pointer flex flex-col items-center p-4 border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-orange-200 shadow-lg shadow-gray-600"
+      className="text-gray-700 cursor-pointer flex flex-col items-center p-4 border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-gray-200 shadow-lg shadow-gray-600"
       to={`/product/${id}`}
     >
       {/* Image container centered and with padding */}

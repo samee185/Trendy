@@ -20,7 +20,7 @@ const SearchBar = () => {
 
   // Render search bar only if showSearch is true and on the collection page
   return showSearch && visible ? (
-    <div className="border-t border-b bg-gray-200 text-center">
+    <div className="border-t border-b bg-purple-300 text-center">
       <div className="inline-flex items-center justify-center border border-gray-800 px-5 py-2 my-5 mx-3 rounded-full w-3/4 sm:w-1/2">
         <input
           value={searchTerm}
