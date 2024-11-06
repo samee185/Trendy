@@ -12,8 +12,7 @@ const Footer = () => {
         <img src={logo} className="w-10 mb-5 " alt="Logo" />
           {/* <img src={assets.logo} className="mb-5 w-32" alt="" /> */}
           <p className="w-full md:w-2/3 text-gray-600">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Repellendus, optios
+          All the Essentials in One Place – Browse Our Footer for Contact Info, FAQs, and Exclusive Member Resources.
           </p>
         </div>
         {/* Company links */}
@@ -31,7 +30,7 @@ const Footer = () => {
           <p className="text-xl font-medium mb-5">GET IN TOUCH</p>
           <ul className="flex flex-col gap-1 text-gray-600">
             <li>+1-212-456-7890</li>
-            <li>contact@foreveryou.com</li>
+            <li>trendynativewears@gmail.com</li>
           </ul>
         </div>
       </div>
@@ -39,7 +38,7 @@ const Footer = () => {
       <div>
         <hr />
         <p className="py-5 text-sm text-center">
-          copyright 2024@ forever.com -All Right Reserved.
+          copyright 2024@ Trendy Native Wears -All Right Reserved.
         </p>
       </div>
     </div>

@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 
 const ProductItem = ({ id, image, title, price }) => {
-  const { currency } = useContext(ShopContext);
+  const { currency } = useContext(ShopContext); 
 
   return (
     <Link
-      className="text-gray-700 cursor-pointer flex flex-col items-center p-4 border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-purple-400 shadow-lg shadow-gray-600"
+      className="text-gray-700 cursor-pointer flex flex-col items-center p-4 border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white shadow-lg shadow-gray-600"
       to={`/product/${id}`}
     >
       {/* Image container centered and with padding */}

@@ -9,8 +9,7 @@ const NewsLetterBox = () => {
     <div className="text-center p-6">
       <p className="text-2xl font-medium text-gray-700">Subscribe now & get 20% off</p>
       <p className="mb-4 text-gray-700">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam,
-        architecto?
+      Stay Updated with the Latest Trends, Exclusive Offers, and Fresh Style Inspiration – Straight to Your Inbox.
       </p>
       <form
         onSubmit={onSubmitHandle}

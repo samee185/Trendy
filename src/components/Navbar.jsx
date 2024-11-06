@@ -13,7 +13,7 @@ const Navbar = () => {
     <div className="flex items-center justify-between py-5 font-medium">
       <Link to={"/"}>
         <div className="p-2 rounded-full shadow-lg">
-          <img src={logo} className="w-10" alt="Logo" />
+          <img src={logo} className="w-16" alt="Logo" />
         </div>
       </Link>
 
