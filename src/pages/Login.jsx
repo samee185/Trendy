@@ -50,7 +50,7 @@ const LogIn = () => {
             <div className="flex justify-center mb-8">
               <Link to={"/"}>
                 <div className="flex items-center">
-                  <img src={logo} alt="bustixlogo" className="h-24 " />
+                  {/* <img src={logo} alt="bustixlogo" className="h-16 " /> */}
                   <span className="ml-[-45px] mb-[-45px] text-[20px] font-semibold text-purple-800">
                     Login to Continue
                   </span>

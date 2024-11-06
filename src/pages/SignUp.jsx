@@ -57,13 +57,13 @@ const SignUp = () => {
           >
             <Typography
               variant="h3"
-              className="text-center text-purple-800 max-w-xs mx-auto"
+              className="text-center text-gray-800 max-w-xs mx-auto"
             >
               Registration Form
             </Typography>
             <Typography
               color="gray"
-              className="mt-1 font-normal text-center text-purple-800 max-w-xs mx-auto"
+              className="mt-1 font-normal text-center text-gray-800 max-w-xs mx-auto"
             >
               Create Account To Continue
             </Typography>
@@ -171,7 +171,7 @@ const SignUp = () => {
               </div>
               <Button
                 type="submit"
-                className="mt-6 w-full"
+                className="mt-6 w-full bg-gray-800"
                 fullWidth
                 disabled={loading}
               >
@@ -180,7 +180,7 @@ const SignUp = () => {
               <p className="mt-3">
                 Already have an account ?{" "}
                 <Link to={"/login"}>
-                  <span className="underline text-purple-800 font-bold">Log In</span>
+                  <span className="underline text-gray-800 font-bold">Log In</span>
                 </Link>{" "}
               </p>
             </form>
