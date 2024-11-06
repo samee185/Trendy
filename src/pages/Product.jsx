@@ -30,7 +30,7 @@ const Product = () => {
     <div className="border-t-2 transition-opacity ease-in duration-500 opacity-100">
       {/* Back to Collection Button */}
       <div className="mt-5 mb-5">
-        <Link to="/collection" className="inline-block bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">
+        <Link to="/collection" className="inline-block bg-purple-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">
           &larr; Back to Collection
         </Link>
       </div>
