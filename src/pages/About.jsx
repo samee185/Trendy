@@ -16,19 +16,17 @@ const About = () => {
           alt=""
         />
         <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
+        <b className="text-gray-800">About Trendy Native Wears</b>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam
-            impedit voluptates, consequatur temporibus amet nemo eum minus
-            voluptate earum hic.
+          Welcome to Trendy Native Wears, where tradition meets modern style. We specialize in offering a curated selection of native wear designed for those who appreciate the richness of cultural heritage with a touch of contemporary elegance. Our mission is to celebrate and reinvent the beauty of traditional fashion, making it accessible, stylish, and timeless for everyone.
           </p>
+          <b className="text-gray-800">Our Craftsmanship</b>  
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-            nihil labore, iusto obcaecati asperiores praesentium?
+          Every item we create reflects a commitment to excellence. We work closely with skilled artisans and designers who understand the intricate details and significance of native patterns and textiles. Using premium fabrics and authentic techniques, our garments are made to last, offering both comfort and style that can be cherished for years to come.
           </p>
-          <b className="text-gray-800">Our Mission</b>
+          <b className="text-gray-800">Our Commitment</b>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
-            harum.
+          Beyond creating beautiful clothing, we’re dedicated to supporting our communities and promoting sustainable practices. By choosing [Your Brand Name], you’re not just choosing quality; you’re supporting a brand that values authenticity, cultural appreciation, and ethical sourcing.
           </p>
         </div>
       </div>
