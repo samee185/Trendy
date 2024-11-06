@@ -4,6 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo2.png";
 import { assets } from "../assets/assets";
 import { ShopContext } from "../context/ShopContext";
+import {FaShoppingCart, FaSearch, FaUser} from "react-icons/fa"
+import { Bars3BottomRightIcon } from "@heroicons/react/24/solid"
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
@@ -37,19 +39,22 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-6">
-        <img
+        {/* <img
           onClick={() => setShowSearch(true)}
           src={assets.search_icon}
           alt=""
           className="w-5 cursor-pointer"
-        />
+        /> */}
+        <FaSearch size={24} className="text-purple-500 cursor-pointer" onClick={() => setShowSearch(true)}/>
+
         <div className="group relative">
           <Link to={"/login"}>
-            <img
+            {/* <img
               src={assets.profile_icon}
               alt=""
               className="w-5 cursor-pointer"
-            />
+            /> */}
+            <FaUser size={24} className="text-purple-500 cursor-pointer" />
           </Link>
 
           <div className="group-hover:block hidden absolute dropdown-menu  right-0 pt-4">
@@ -61,17 +66,19 @@ const Navbar = () => {
           </div>
         </div>
         <Link to={"/cart"} className="relative">
-          <img src={assets.cart_icon} alt="" className="w-5 min-w-5 " />
-          <p className="absolute right-[-5px]  bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">
+          {/* <img src={assets.cart_icon} alt="" className="w-5 min-w-5 " /> */}
+          <FaShoppingCart size={24} className="text-purple-500 cursor-pointer"/>
+          <p className="absolute right-[-5px]  bottom-[-5px] w-4 text-center leading-4 bg-purple-500 text-white aspect-square rounded-full text-[8px]">
             {getCartCount()}
           </p>
         </Link>
-        <img
+        {/* <img
           onClick={() => setVisible(true)}
           src={assets.menu_icon}
           className="w-5 cursor-pointer sm:hidden "
           alt=""
-        />
+        /> */}
+        <Bars3BottomRightIcon className="w-8 text-purple-500 font-bold" onClick={() => setVisible(true)} />
       </div>
       {/* sidebar menu for smaller screen */}
       <div
