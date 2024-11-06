@@ -51,7 +51,7 @@ const LogIn = () => {
               <Link to={"/"}>
                 <div className="flex items-center">
                   {/* <img src={logo} alt="bustixlogo" className="h-16 " /> */}
-                  <span className="ml-[-45px] mb-[-45px] text-[20px] font-semibold text-purple-800">
+                  <span className="ml-[-45px] mb-[-45px] text-[20px] font-semibold text-gray-800">
                     Login to Continue
                   </span>
                 </div>
@@ -65,7 +65,7 @@ const LogIn = () => {
                 <div>
                   <Typography
                     variant="h6"
-                    className="mb-3 text-purple-800"
+                    className="mb-3 text-gray-800"
                   >
                     Email
                   </Typography>
@@ -88,7 +88,7 @@ const LogIn = () => {
                 <div className="relative">
                   <Typography
                     variant="h6"
-                    className="mb-3 text-purple-800"
+                    className="mb-3 text-gray-800"
                   >
                     Password
                   </Typography>
@@ -127,7 +127,7 @@ const LogIn = () => {
               </div>
               <Button
                 type="submit"
-                className="mt-6 w-full bg-purple-800 "
+                className="mt-6 w-full bg-gray-800 "
                 fullWidth
                 disabled={loading}
               >
@@ -137,7 +137,7 @@ const LogIn = () => {
               <p className="mt-3">
                 Don't have an account ?{" "}
                 <Link to={"/signup"}>
-                  <span className="underline text-purple-700 font-bold">Register Now</span>
+                  <span className="underline text-gray-800 font-bold">Register Now</span>
                 </Link>{" "}
               </p>
             </form>
