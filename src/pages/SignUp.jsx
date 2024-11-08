@@ -45,7 +45,7 @@ const SignUp = () => {
   });
   return (
     <>
-      <div className="bg-gray-100 flex items-center lg:gap-10 px-4 lg:px-4 rounded-lg ">
+      <div className="bg-white flex items-center lg:gap-10 px-4 lg:px-4 rounded-lg ">
         <div className="hidden lg:block lg:basis-1/2">
           <img src={authImg} alt="heroimage" className="object-cover h-full" />
         </div>
