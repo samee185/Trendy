@@ -19,7 +19,7 @@ const Hero = () => {
             <Link to={"/collection"}>
             
            
-              <p className="font-semibold text-sm md:text-base">
+              <p className="font-semibold text-sm md:text-base border border-purple-400 p-2 rounded-md transition hover:bg-purple-300 duration-700">
                 SHOP NOW
               </p>
             </Link>
