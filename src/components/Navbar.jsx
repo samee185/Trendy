@@ -38,14 +38,14 @@ const Navbar = () => {
         </NavLink>
       </ul>
 
-      <div className="flex items-center gap-6">
+      <div className="flex items-center  gap-3 md:gap-6">
         {/* <img
           onClick={() => setShowSearch(true)}
           src={assets.search_icon}
           alt=""
           className="w-5 cursor-pointer"
         /> */}
-        <FaSearch size={24} className="text-purple-500 cursor-pointer" onClick={() => setShowSearch(true)}/>
+        <FaSearch size={22} className="text-purple-500 cursor-pointer" onClick={() => setShowSearch(true)}/>
 
         <div className="group relative">
           <Link to={"/login"}>
@@ -54,7 +54,7 @@ const Navbar = () => {
               alt=""
               className="w-5 cursor-pointer"
             /> */}
-            <FaUser size={24} className="text-purple-500 cursor-pointer" />
+            <FaUser size={22} className="text-purple-500 cursor-pointer" />
           </Link>
 
           <div className="group-hover:block hidden absolute dropdown-menu  right-0 pt-4">
@@ -67,7 +67,7 @@ const Navbar = () => {
         </div>
         <Link to={"/cart"} className="relative">
           {/* <img src={assets.cart_icon} alt="" className="w-5 min-w-5 " /> */}
-          <FaShoppingCart size={24} className="text-purple-500 cursor-pointer"/>
+          <FaShoppingCart size={22} className="text-purple-500 cursor-pointer"/>
           <p className="absolute right-[-5px]  bottom-[-5px] w-4 text-center leading-4 bg-purple-500 text-white aspect-square rounded-full text-[8px]">
             {getCartCount()}
           </p>
@@ -78,7 +78,7 @@ const Navbar = () => {
           className="w-5 cursor-pointer sm:hidden "
           alt=""
         /> */}
-        <Bars3BottomRightIcon className="w-8 text-purple-500 font-bold" onClick={() => setVisible(true)} />
+        <Bars3BottomRightIcon className="w-7 text-purple-500 font-bold sm:hidden" onClick={() => setVisible(true)} />
       </div>
       {/* sidebar menu for smaller screen */}
       <div
