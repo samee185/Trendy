@@ -3,26 +3,60 @@ import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
+import { useParams } from "react-router-dom"; // Import useParams to read URL parameters
+import CategoryForm from "../components/CategoryForm";
 
 const Collection = () => {
   // Accessing products from context using the ShopContext
   const { products, searchTerm, setSearchTerm } = useContext(ShopContext);
 
+  // const { category: categoryFromParams } = useParams();
+
   // States for managing filter visibility, filtered products, selected categories, subcategories, and sort type
   const [showFilter, setShowfilter] = useState(false); // Show/hide filter section
   const [filterProducts, setFilterProducts] = useState([]); // Products to be displayed after applying filters
-  const [category, setCategory] = useState([]); // Selected categories for filtering
+  const [selectedCategories, setSelectedCategories] = useState([]); // Selected categories for filtering
   const [subCategory, setSubCategory] = useState([]); // Selected subcategories for filtering
   const [sortType, setSortType] = useState("relevant"); // Sort type (e.g., "low-high", "high-low")
 
+  // update the useEffect to handle initial category:
+  const { category } = useParams();
+
+  useEffect(() => {
+    // Set initial category if provided in URL
+    if (category) {
+      setSelectedCategories([category]);
+    }
+
+    // Cleanup function
+    return () => {
+      setSelectedCategories([]);
+      setSubCategory([]);
+    };
+  }, [category]);
+
+
+  useEffect(() => {
+    if (category) {
+      // Only set selected categories if coming from category links
+      setSelectedCategories([category]);
+    } else {
+      // Reset filters when accessing /collection directly
+      setSelectedCategories([]);
+    }
+    applyFilter();
+  }, [category]);
+
   // Function to toggle category selection for filtering
   const toggleCategory = (e) => {
-    if (category.includes(e.target.value)) {
+    if (selectedCategories.includes(e.target.value)) {
       // If category is already selected, remove it
-      setCategory(category.filter((item) => item !== e.target.value));
+      setSelectedCategories(
+        selectedCategories.filter((item) => item !== e.target.value)
+      );
     } else {
       // Otherwise, add the category to the selection
-      setCategory([...category, e.target.value]);
+      setSelectedCategories([...selectedCategories, e.target.value]);
     }
   };
 
@@ -47,12 +81,11 @@ const Collection = () => {
         item.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-    
 
     // Filter by selected categories
-    if (category.length > 0) {
+    if (selectedCategories.length > 0) {
       filteredProducts = filteredProducts.filter((item) =>
-        category.includes(item.category)
+        selectedCategories.includes(item.category)
       );
     }
 
@@ -70,7 +103,7 @@ const Collection = () => {
   // This useEffect will apply filters when searchTerm or filter settings change
   useEffect(() => {
     applyFilter(); // Apply filters whenever searchTerm, category, or subCategory changes
-  }, [category, subCategory, searchTerm]);
+  }, [selectedCategories, subCategory, searchTerm]);
 
   // Sorting function based on the selected sort type (e.g., price)
   const sortProducts = () => {
@@ -104,7 +137,7 @@ const Collection = () => {
   // Use effect to apply filters whenever the selected category or subcategory changes
   useEffect(() => {
     applyFilter(); // Apply filters whenever category or subcategory state changes
-  }, [category, subCategory, searchTerm, setSearchTerm]); // Dependency on category and subCategory ensures filtering happens when they change
+  }, [selectedCategories, subCategory, searchTerm, setSearchTerm]); // Dependency on category and subCategory ensures filtering happens when they change
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t h-full">
@@ -123,19 +156,16 @@ const Collection = () => {
           />
         </p>
 
-        {/* Category filter section */}
-        <div
-          className={`border border-gray-300 pl-5 py-3 mt-6 `}
-        >
+        {/* <div className={`border border-gray-300 pl-5 py-3 mt-6 `}>
           <p className="mb-3 text-sm font-medium">CATEGORIES</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
-            {/* Checkbox options for categories */}
+           
             <p className="flex gap-2">
               <input
                 type="checkbox"
                 className="w-3"
                 value={"men"}
-                onChange={toggleCategory} // Toggle category when checkbox changes
+                onChange={toggleCategory} 
               />{" "}
               Men
             </p>
@@ -158,7 +188,14 @@ const Collection = () => {
               Kids
             </p>
           </div>
-        </div>
+        </div> */}
+
+        {/* Use the CategoryForm component here */}
+        <CategoryForm
+          selectedCategories={selectedCategories}
+          toggleCategory={toggleCategory}
+        />
+        {/* end of category filter section */}
 
         {/* Subcategory filter section */}
         {/* <div
@@ -166,8 +203,8 @@ const Collection = () => {
             showFilter ? "" : "hidden"
           } sm:block`}
         > */}
-          {/* <p className="mb-3 text-sm font-medium">TYPE</p> */}
-          {/* <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
+        {/* <p className="mb-3 text-sm font-medium">TYPE</p> */}
+        {/* <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
           
             <p className="flex gap-2">
               <input
@@ -224,7 +261,7 @@ const Collection = () => {
               id={item._id}
               title={item.title}
               price={item.price}
-              image={item.images?.[0] || "default-image-url.jpg"} // Fallback if `images` is empty
+              image={item.images?.[0] || "default-image-url.jpg"} // Fallback if images is empty
             />
           ))}
         </div>

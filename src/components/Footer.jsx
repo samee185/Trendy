@@ -10,8 +10,9 @@ const Footer = () => {
       <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm">
         {/* Logo and description */}
         <div>
-        <img src={logo} className="w-10 mb-5 " alt="Logo" />
-          {/* <img src={assets.logo} className="mb-5 w-32" alt="" /> */}
+        <Link to={"/"}>
+        <img src={logo} className="w-14 h-12 mb-5 " alt="Logo" />
+        </Link>
           <p className="w-full md:w-2/3 text-gray-600">
           All the Essentials in One Place – Browse Our Footer for Contact Info, FAQs, and Exclusive Member Resources.
           </p>

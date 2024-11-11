@@ -10,15 +10,22 @@ const Hero = () => {
         <div className="text-[#414141]">
           <div className="flex items-center gap-2">
             <p className="w-8 md:w-11 h-[2px] bg-[#414141]"></p>
-            <p className="font-medium text-sm md:text-base text">OUR BESTSELLERS</p>
+            <p className="font-medium text-sm md:text-base text">
+              OUR BESTSELLERS
+            </p>
           </div>
           <h1 className=" prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed">
             Latest Arrivals
           </h1>
           <div className="flex items-center gap-2">
-            <Link to={"/collection"}>
-            
-           
+            <Link
+              to="/collection"
+              onClick={() => {
+                // Optional: If you're using any global state for filters
+                setSelectedCategories([]);
+                setSubCategory([]);
+              }}
+            >
               <p className="font-semibold text-sm md:text-base border border-purple-400 p-2 rounded-md transition hover:bg-purple-300 duration-700">
                 SHOP NOW
               </p>
@@ -29,7 +36,11 @@ const Hero = () => {
         </div>
       </div>
       {/* Hero rightSide */}
-      <img className="w-full h-[450px] sm:w-1/2 md:h-[545px]" src={assets.hero_img} alt="" />
+      <img
+        className="w-full h-[450px] sm:w-1/2 md:h-[545px]"
+        src={assets.hero_img}
+        alt=""
+      />
     </div>
   );
 };

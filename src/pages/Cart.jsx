@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
+import { usePayment } from "../context/PaymentContext";
+import { useAuth } from "../context/AuthContext";
 import Title from "../components/Title";
 import { assets } from "../assets/assets";
 import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
-  const { products, currency, cartingTerm, updateQuantity, navigate } =
-    useContext(ShopContext);
+  const { products, currency, cartingTerm, updateQuantity, } = useContext(ShopContext);
+  const { initiatePayment, loading, paymentUrl } = usePayment(); 
+  const { user } = useAuth();
   const [cartDetails, setCartDetails] = useState([]);
 
   useEffect(() => {
-    // console.log("cartingTerm:", cartingTerm);
-    // console.log("products:", products);
-
     const tempData = [];
     for (const items in cartingTerm) {
       for (const size in cartingTerm[items]) {
@@ -28,10 +28,39 @@ const Cart = () => {
     setCartDetails(tempData);
   }, [cartingTerm, products]);
 
-  // Ensure products are fetched before rendering cart items
   if (products.length === 0) {
     return <div>Loading...</div>;
   }
+
+  const handleCheckout = async () => {
+    console.log(cartDetails);
+
+    const amount = cartDetails.reduce((total, item) => {
+      const productData = products.find((product) => product._id === item._id);
+      console.log(productData);
+      return productData ? total + Math.round(productData.price * item.quantity * 100) : total;
+    }, 0);
+
+    console.log("Total amount in kobo:", amount);
+
+    if (amount <= 0) {
+      console.error("Invalid amount for payment");
+      return;
+    }
+    try {
+      console.log("hiiiiiiiiii");
+      console.log(user._id, amount, user.email);
+      
+      await initiatePayment(user._id, cartDetails, amount, user.email);
+      console.log("hiiiiiiiiii");
+      
+      if (paymentUrl) {
+        window.location.href = paymentUrl; // Redirects to the payment URL
+      }
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+    }
+  };
 
   return (
     <div className="border-t pt-14">
@@ -45,17 +74,12 @@ const Cart = () => {
           );
 
           if (!productData) {
-            console.log(
-              `No matching product for cart item with ID: ${item._id}`
-            );
             return (
               <div key={index} className="py-4 text-red-500">
                 Product not found
               </div>
             );
           }
-
-          console.log("Rendering item:", productData);
 
           return (
             <div
@@ -64,7 +88,7 @@ const Cart = () => {
             >
               <div className="flex gap-6 items-center">
                 <img
-                  src={productData.images[0]} // Log the image to confirm it exists
+                  src={productData.images?.[0] || assets.placeholder_image}
                   alt={productData.title}
                   className="w-20 sm:w-24"
                 />
@@ -77,7 +101,6 @@ const Cart = () => {
                   </p>
                 </div>
               </div>
-
               <div className="flex flex-col sm:flex-row items-center justify-between sm:gap-4">
                 <div className="flex items-center gap-5">
                   <p className="text-lg sm:text-sm font-medium">
@@ -101,7 +124,6 @@ const Cart = () => {
                   />
                 </div>
               </div>
-
               <div className="flex justify-end sm:justify-center">
                 <img
                   onClick={() => updateQuantity(item._id, item.size, 0)}
@@ -120,10 +142,11 @@ const Cart = () => {
           <CartTotal />
           <div className="w-full text-end">
             <button
-              onClick={() => navigate("/place-order")}
-              className="bg-black text-white text-sm my-8  px-8 py-3"
+              onClick={handleCheckout}
+              className="bg-black text-white text-sm my-8 px-8 py-3"
+              disabled={loading} // Disables button while loading
             >
-              PROCEED TO CHECKOUT
+              {loading ? "Processing..." : "PROCEED TO CHECKOUT"}
             </button>
           </div>
         </div>

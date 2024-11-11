@@ -38,14 +38,14 @@ const AuthProvider = ({ children }) => {
         setUser(res.data.data.user);
         localStorage.setItem("token", res.data.data.token);
         localStorage.setItem("user", res.data.data.user);
-        // toast.success("Registration completed");
+        toast.success("Registration completed");
         navigate("/")
         
     })
     .catch((err)=>{
-        // err?.response
-        //   ? toast.error(err.response.data.message)
-        //   : toast.error("An error occured");
+        err?.response
+          ? toast.error(err.response.data.message)
+          : toast.error("An error occured");
         console.log(err?.response.data.message);
     })
     .finally(() => {
@@ -67,13 +67,13 @@ const AuthProvider = ({ children }) => {
         setUser(res.data.data.user);
         localStorage.setItem("token", res.data.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.data.user));
-        // toast.success("Login Succesful !");
+        toast.success("Login Succesful !");
         navigate("/");
       })
       .catch((err) => {
-        // err?.response
-        //   ? toast.error(err.response.data.message)
-        //   : toast.error("An error occured");
+        err?.response
+          ? toast.error(err.response.data.message)
+          : toast.error("An error occured");
         console.log(err?.response.data.messasge);
         
       })
@@ -86,7 +86,7 @@ const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    // toast.success("Logout Successful");
+    toast.success("Logout Successful");
     navigate("/login");
   };
 

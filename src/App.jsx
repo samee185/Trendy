@@ -20,18 +20,18 @@ import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <>
-      <AuthProvider>
-        <ToastContainer />
+      <ToastContainer />
         <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-white px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
           <Navbar />
           <SearchBar />
-          
+
           {/* Main content area */}
           <div className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/collection" element={<Collection />} />
+              <Route path="/collection/:category" element={<Collection />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/product/:productId" element={<Product />} />
@@ -46,7 +46,6 @@ function App() {
           {/* Footer */}
           <Footer />
         </div>
-      </AuthProvider>
     </>
   );
 }

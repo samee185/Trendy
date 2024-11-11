@@ -4,12 +4,13 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo2.png";
 import { assets } from "../assets/assets";
 import { ShopContext } from "../context/ShopContext";
-import {FaShoppingCart, FaSearch, FaUser} from "react-icons/fa"
-import { Bars3BottomRightIcon } from "@heroicons/react/24/solid"
+import { FaShoppingCart, FaSearch, FaUser } from "react-icons/fa";
+import { Bars3BottomRightIcon } from "@heroicons/react/24/solid";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const { setShowSearch, getCartCount } = useContext(ShopContext);
+  const [showSidebarDropdown, setShowSidebarDropdown] = useState(false); // State for sidebar dropdown
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
@@ -45,7 +46,11 @@ const Navbar = () => {
           alt=""
           className="w-5 cursor-pointer"
         /> */}
-        <FaSearch size={22} className="text-purple-500 cursor-pointer" onClick={() => setShowSearch(true)}/>
+        <FaSearch
+          size={22}
+          className="text-purple-500 cursor-pointer"
+          onClick={() => setShowSearch(true)}
+        />
 
         <div className="group relative">
           <Link to={"/login"}>
@@ -67,7 +72,10 @@ const Navbar = () => {
         </div>
         <Link to={"/cart"} className="relative">
           {/* <img src={assets.cart_icon} alt="" className="w-5 min-w-5 " /> */}
-          <FaShoppingCart size={22} className="text-purple-500 cursor-pointer"/>
+          <FaShoppingCart
+            size={22}
+            className="text-purple-500 cursor-pointer"
+          />
           <p className="absolute right-[-5px]  bottom-[-5px] w-4 text-center leading-4 bg-purple-500 text-white aspect-square rounded-full text-[8px]">
             {getCartCount()}
           </p>
@@ -78,7 +86,10 @@ const Navbar = () => {
           className="w-5 cursor-pointer sm:hidden "
           alt=""
         /> */}
-        <Bars3BottomRightIcon className="w-7 text-purple-500 font-bold sm:hidden" onClick={() => setVisible(true)} />
+        <Bars3BottomRightIcon
+          className="w-7 text-purple-500 font-bold sm:hidden"
+          onClick={() => setVisible(true)}
+        />
       </div>
       {/* sidebar menu for smaller screen */}
       <div
@@ -101,13 +112,53 @@ const Navbar = () => {
           >
             Home
           </NavLink>
-          <NavLink
-            onClick={() => setVisible(false)}
-            className={"py-2 pl-6 border"}
-            to={"/collection"}
-          >
-            COLLECTION
-          </NavLink>
+          {/* Sidebar Collection Menu with Sub-Dropdown */}
+          <div className="relative">
+            <button
+              className="text-gray-700 flex items-center justify-between w-full py-2 pl-6 border"
+              onClick={() => setShowSidebarDropdown(!showSidebarDropdown)}
+            >
+              COLLECTION
+              <span className="ml-2">{showSidebarDropdown ? "-" : "+"}</span>
+            </button>
+            {showSidebarDropdown && (
+              <div className="ml-4 mt-2">
+                <ul className="flex flex-col gap-2">
+                  <Link
+                    to="/collection/men"
+                    className="text-gray-600 hover:text-purple-600"
+                    onClick={() => {
+                      setVisible(false);
+                      setShowSidebarDropdown(false);
+                    }}
+                  >
+                    Men
+                  </Link>
+                  <Link
+                    to="/collection/women"
+                    className="text-gray-600 hover:text-purple-600"
+                    onClick={() => {
+                      setVisible(false);
+                      setShowSidebarDropdown(false);
+                    }}
+                  >
+                    Women
+                  </Link>
+
+                  <Link
+                    to="/collection/kids"
+                    className="text-gray-600 hover:text-purple-600"
+                    onClick={() => {
+                      setVisible(false);
+                      setShowSidebarDropdown(false);
+                    }}
+                  >
+                    Kids
+                  </Link>
+                </ul>
+              </div>
+            )}
+          </div>
           <NavLink
             onClick={() => setVisible(false)}
             className={"py-2 pl-6 border"}
