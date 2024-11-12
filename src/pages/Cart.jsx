@@ -38,7 +38,7 @@ const Cart = () => {
     const amount = cartDetails.reduce((total, item) => {
       const productData = products.find((product) => product._id === item._id);
       console.log(productData);
-      return productData ? total + Math.round(productData.price * item.quantity * 100) : total;
+      return productData ? total + Math.round(productData.price * item.quantity) : total;
     }, 0);
 
     console.log("Total amount in kobo:", amount);
