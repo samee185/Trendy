@@ -90,6 +90,8 @@ const AuthProvider = ({ children }) => {
     navigate("/login");
   };
 
+  const isAuthenticated = !! token;
+
   const values = {
     loading,
     token,
@@ -97,6 +99,7 @@ const AuthProvider = ({ children }) => {
     signUp,
     login,
     logout,
+    isAuthenticated,
   };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;

@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from "./context/AuthContext";
 import SignUp from "./pages/SignUp";
 import ScrollToTop from "./components/ScrollToTop";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -35,7 +36,9 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/product/:productId" element={<Product />} />
+              <Route element={<PrivateRoute/>}>
               <Route path="/cart" element={<Cart />} />
+              </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/place-order" element={<PlaceOrder />} />
