@@ -8,7 +8,6 @@ import {
   Typography,
   Spinner,
 } from "@material-tailwind/react";
-import logo from "../assets/logo2.png";
 import { useAuth } from "../context/AuthContext";
 import authImg from "../assets/contact_img.png";
 import UseShowPassword from "../hooks/UseShowPassword";
