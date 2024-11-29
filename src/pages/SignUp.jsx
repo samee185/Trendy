@@ -19,30 +19,28 @@ const SignUp = () => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
+      firstname: "",
+      lastname: "",
       email: "",
       password: "",
     },
     // form validation
-
     validationSchema: Yup.object({
-      firstName: Yup.string()
-      .required("First Name is required"),
-      lastName: Yup.string()
-      .required("Last Name is required"),
+      firstname: Yup.string().required("First Name is required"),
+      lastname: Yup.string().required("Last Name is required"),
       email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
       password: Yup.string()
-      .required("Password is required")
-      .min(6, "Minimum of 6 characters"), 
+        .required("Password is required")
+        .min(6, "Minimum of 6 characters"),
     }),
     onSubmit: async (values) => {
-      console.log(values);
-      await signUp(values);
+      console.log("Form Values:", values); // Log values to debug
+      await signUp(values); // Send form data to AuthContext
     },
   });
+
   return (
     <>
       <div className="bg-white flex items-center lg:gap-10 px-4 lg:px-4 rounded-lg ">
@@ -72,6 +70,7 @@ const SignUp = () => {
               className="mt-4 w-full max-w-md mx-auto"
             >
               <div className="flex flex-col gap-6">
+                {/* First Name */}
                 <div>
                   <Typography variant="h6" color="blue-gray" className="mb-3">
                     First Name
@@ -79,19 +78,21 @@ const SignUp = () => {
                   <Input
                     size="lg"
                     placeholder="Emeka"
-                    className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                    className="!border-t-blue-gray-200 focus:!border-t-gray-900"
                     labelProps={{
                       className: "before:content-none after:content-none",
                     }}
-                    value={formik.values.firstName}
+                    value={formik.values.firstname}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    name="firstName"
+                    name="firstname"
                   />
-                  {formik.touched.firstName && formik.errors.firstName && (
-                    <p className="text-red-300">{formik.errors.firstName}</p>
+                  {formik.touched.firstname && formik.errors.firstname && (
+                    <p className="text-red-300">{formik.errors.firstname}</p>
                   )}
                 </div>
+
+                {/* Last Name */}
                 <div>
                   <Typography variant="h6" color="blue-gray" className="mb-3">
                     Last Name
@@ -99,19 +100,21 @@ const SignUp = () => {
                   <Input
                     size="lg"
                     placeholder="Adeola"
-                    className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                    className="!border-t-blue-gray-200 focus:!border-t-gray-900"
                     labelProps={{
                       className: "before:content-none after:content-none",
                     }}
-                    value={formik.values.lastName}
+                    value={formik.values.lastname}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    name="lastName"
+                    name="lastname"
                   />
-                  {formik.touched.lastName && formik.errors.lastName && (
-                    <p className="text-red-300">{formik.errors.lastName}</p>
+                  {formik.touched.lastname && formik.errors.lastname && (
+                    <p className="text-red-300">{formik.errors.lastname}</p>
                   )}
                 </div>
+
+                {/* Email */}
                 <div>
                   <Typography variant="h6" color="blue-gray" className="mb-3">
                     Email
@@ -119,7 +122,7 @@ const SignUp = () => {
                   <Input
                     size="lg"
                     placeholder="name@mail.com"
-                    className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                    className="!border-t-blue-gray-200 focus:!border-t-gray-900"
                     labelProps={{
                       className: "before:content-none after:content-none",
                     }}
@@ -132,15 +135,17 @@ const SignUp = () => {
                     <p className="text-red-300">{formik.errors.email}</p>
                   )}
                 </div>
+
+                {/* Password */}
                 <div className="relative">
                   <Typography variant="h6" color="blue-gray" className="mb-3">
                     Password
                   </Typography>
                   <Input
-                    type={`${showPassword ? "text" : "password"}`}
+                    type={showPassword ? "text" : "password"}
                     size="lg"
                     placeholder="********"
-                    className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                    className="!border-t-blue-gray-200 focus:!border-t-gray-900"
                     labelProps={{
                       className: "before:content-none after:content-none",
                     }}
@@ -169,19 +174,23 @@ const SignUp = () => {
                   )}
                 </div>
               </div>
+
+              {/* Submit Button */}
               <Button
                 type="submit"
                 className="mt-6 w-full bg-gray-800"
                 fullWidth
                 disabled={loading}
               >
-                {loading ? <Spinner color="gray text-center" /> : "Sign Up"}
+                {loading ? <Spinner color="gray" /> : "Sign Up"}
               </Button>
               <p className="mt-3">
-                Already have an account ?{" "}
+                Already have an account?{" "}
                 <Link to={"/login"}>
-                  <span className="underline text-gray-800 font-bold">Log In</span>
-                </Link>{" "}
+                  <span className="underline text-gray-800 font-bold">
+                    Log In
+                  </span>
+                </Link>
               </p>
             </form>
           </Card>

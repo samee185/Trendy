@@ -17,6 +17,7 @@ import AuthProvider from "./context/AuthContext";
 import SignUp from "./pages/SignUp";
 import ScrollToTop from "./components/ScrollToTop";
 import PrivateRoute from "./components/PrivateRoute";
+import Paydeveloper from "./components/Paydeveloper";
 
 function App() {
   return (
@@ -26,8 +27,6 @@ function App() {
         <div className="min-h-screen flex flex-col bg-white px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
           <Navbar />
           <SearchBar />
-
-          {/* Main content area */}
           <div className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
@@ -46,9 +45,10 @@ function App() {
             </Routes>
           </div>
 
-          {/* Footer */}
           <Footer />
         </div>
+
+        {/* <Paydeveloper/> */}
     </>
   );
 }
