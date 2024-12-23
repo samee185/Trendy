@@ -9,7 +9,7 @@ import { Bars3BottomRightIcon } from "@heroicons/react/24/solid";
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const { setShowSearch, getCartCount } = useContext(ShopContext);
-  const [showSidebarDropdown, setShowSidebarDropdown] = useState(true); // Open by default
+  const [showSidebarDropdown, setShowSidebarDropdown] = useState(true); 
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
@@ -41,29 +41,28 @@ const Navbar = () => {
       <div className="flex items-center gap-3 md:gap-6">
         <FaSearch
           size={22}
-          className="text-purple-500 cursor-pointer"
+          className="text-gray-700 cursor-pointer"
           onClick={() => setShowSearch(true)}
         />
 
         <div className="group relative">
           <Link to={"/login"}>
-            <FaUser size={22} className="text-purple-500 cursor-pointer" />
+            <FaUser size={22} className="text-gray-700 cursor-pointer" />
           </Link>
         </div>
 
         <Link to={"/cart"} className="relative">
-          <FaShoppingCart size={22} className="text-purple-500 cursor-pointer" />
-          <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-purple-500 text-white aspect-square rounded-full text-[8px]">
+          <FaShoppingCart size={22} className="text-gray-700 cursor-pointer" />
+          <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-gray-700 text-white aspect-square rounded-full text-[8px]">
             {getCartCount()}
           </p>
         </Link>
 
         <Bars3BottomRightIcon
-          className="w-7 text-purple-500 font-bold sm:hidden"
+          className="w-7 text-gray-800 font-bold sm:hidden"
           onClick={() => setVisible(true)}
         />
       </div>
-
       {/* Sidebar menu for smaller screens */}
       <div
         className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${

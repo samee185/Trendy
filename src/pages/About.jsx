@@ -16,9 +16,9 @@ const About = () => {
           alt=""
         />
         <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
-        <b className="text-gray-800">About Trendy Native Wears</b>
+        <b className="text-gray-800">About Eazi Cut </b>
           <p>
-          Welcome to Trendy Native Wears, where tradition meets modern style. We specialize in offering a curated selection of native wear designed for those who appreciate the richness of cultural heritage with a touch of contemporary elegance. Our mission is to celebrate and reinvent the beauty of traditional fashion, making it accessible, stylish, and timeless for everyone.
+          Welcome to Eazi Cut, where tradition meets modern style. We specialize in offering a curated selection of native wear designed for those who appreciate the richness of cultural heritage with a touch of contemporary elegance. Our mission is to celebrate and reinvent the beauty of traditional fashion, making it accessible, stylish, and timeless for everyone.
           </p>
           <b className="text-gray-800">Our Craftsmanship</b>  
           <p>
