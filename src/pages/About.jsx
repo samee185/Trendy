@@ -23,10 +23,10 @@ const About = () => {
           <b className="text-gray-800">Our Craftsmanship</b>  
           <p>
           Every item we create reflects a commitment to excellence. We work closely with skilled artisans and designers who understand the intricate details and significance of native patterns and textiles. Using premium fabrics and authentic techniques, our garments are made to last, offering both comfort and style that can be cherished for years to come.
-          </p>
+          </p> 
           <b className="text-gray-800">Our Commitment</b>
           <p>
-          Beyond creating beautiful clothing, we’re dedicated to supporting our communities and promoting sustainable practices. By choosing [Your Brand Name], you’re not just choosing quality; you’re supporting a brand that values authenticity, cultural appreciation, and ethical sourcing.
+          Beyond creating beautiful clothing, we’re dedicated to supporting our communities and promoting sustainable practices. By choosing Eazi Cut, you’re not just choosing quality; you’re supporting a brand that values authenticity, cultural appreciation, and ethical sourcing.
           </p>
         </div>
       </div>
