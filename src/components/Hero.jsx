@@ -1,6 +1,7 @@
 import React from "react";
 import { assets } from "../assets/assets";
 import { Link } from "react-router-dom";
+import heroImg from "../assets/hero-image.jpg"
 
 const Hero = () => {
   return (
@@ -33,7 +34,7 @@ const Hero = () => {
       {/* Hero rightSide */}
       <img
         className="w-full h-[450px] sm:w-1/2 md:h-[545px]"
-        src={assets.hero_img}
+        src={heroImg}
         alt=""
       />
     </div>
