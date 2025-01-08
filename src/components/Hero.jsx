@@ -20,11 +20,6 @@ const Hero = () => {
           <div className="flex items-center gap-2">
             <Link
               to="/collection"
-              onClick={() => {
-                // Optional: If you're using any global state for filters
-                setSelectedCategories([]);
-                setSubCategory([]);
-              }}
             >
               <p className="font-semibold text-sm md:text-base border border-purple-400 p-2 rounded-md transition hover:bg-purple-300 duration-700">
                 SHOP NOW
