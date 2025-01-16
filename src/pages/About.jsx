@@ -16,9 +16,9 @@ const About = () => {
           alt=""
         />
         <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
-        <b className="text-gray-800">About Eazi Cut </b>
+        <b className="text-gray-800">About Trendy Native Wears </b>
           <p>
-          Welcome to Eazi Cut, where tradition meets modern style. We specialize in offering a curated selection of native wear designed for those who appreciate the richness of cultural heritage with a touch of contemporary elegance. Our mission is to celebrate and reinvent the beauty of traditional fashion, making it accessible, stylish, and timeless for everyone.
+          Welcome to Trendy Native Wears, where tradition meets modern style. We specialize in offering a curated selection of native wear designed for those who appreciate the richness of cultural heritage with a touch of contemporary elegance. Our mission is to celebrate and reinvent the beauty of traditional fashion, making it accessible, stylish, and timeless for everyone.
           </p>
           <b className="text-gray-800">Our Craftsmanship</b>  
           <p>
@@ -26,7 +26,7 @@ const About = () => {
           </p> 
           <b className="text-gray-800">Our Commitment</b>
           <p>
-          Beyond creating beautiful clothing, we’re dedicated to supporting our communities and promoting sustainable practices. By choosing Eazi Cut, you’re not just choosing quality; you’re supporting a brand that values authenticity, cultural appreciation, and ethical sourcing.
+          Beyond creating beautiful clothing, we’re dedicated to supporting our communities and promoting sustainable practices. By choosing Trendy Native Wears, you’re not just choosing quality; you’re supporting a brand that values authenticity, cultural appreciation, and ethical sourcing.
           </p>
         </div>
       </div>

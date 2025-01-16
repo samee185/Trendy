@@ -43,7 +43,7 @@ const Footer = () => {
       <div>
         <hr />
         <p className="py-5 text-sm text-center">
-          copyright 2024@ Trendy Native Wears -All Right Reserved.
+          Copyright 2024@ Trendy Native Wears -All Right Reserved.
         </p>
       </div>
     </div>
