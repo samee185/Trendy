@@ -7,7 +7,7 @@ import { assets } from "../assets/assets";
 import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
-  const { products, currency, cartingTerm, updateQuantity, } = useContext(ShopContext);
+  const { products, currency, cartingTerm, updateQuantity } = useContext(ShopContext);
   const { initiatePayment, loading, paymentUrl } = usePayment(); 
   const { user } = useAuth();
   const [cartDetails, setCartDetails] = useState([]);
@@ -28,6 +28,12 @@ const Cart = () => {
     setCartDetails(tempData);
   }, [cartingTerm, products]);
 
+  useEffect(() => {
+    if (paymentUrl) {
+      window.location.href = paymentUrl; // Redirect once paymentUrl updates
+    }
+  }, [paymentUrl]); // Runs only when paymentUrl changes
+
   if (products.length === 0) {
     return <div>Loading...</div>;
   }
@@ -37,7 +43,6 @@ const Cart = () => {
 
     const amount = cartDetails.reduce((total, item) => {
       const productData = products.find((product) => product._id === item._id);
-      console.log(productData);
       return productData ? total + Math.round(productData.price * item.quantity) : total;
     }, 0);
 
@@ -47,16 +52,10 @@ const Cart = () => {
       console.error("Invalid amount for payment");
       return;
     }
+
     try {
-      console.log("hiiiiiiiiii");
-      console.log(user._id, amount, user.email);
-      
+      console.log("Initiating payment...");
       await initiatePayment(user._id, cartDetails, amount, user.email);
-      console.log("hiiiiiiiiii");
-      
-      if (paymentUrl) {
-        window.location.href = paymentUrl; // Redirects to the payment URL
-      }
     } catch (error) {
       console.error("Error initiating payment:", error);
     }
