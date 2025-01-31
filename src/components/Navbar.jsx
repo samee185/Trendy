@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo2.png";
 import { assets } from "../assets/assets";
 import { ShopContext } from "../context/ShopContext";
-import { AuthContext } from "../context/AuthContext"; // Import AuthContext
+import { useAuth } from "../context/AuthContext"; 
 import { FaShoppingCart, FaSearch, FaUser, FaSignOutAlt } from "react-icons/fa";
 import { Bars3BottomRightIcon } from "@heroicons/react/24/solid";
 
@@ -11,7 +11,7 @@ const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const { setShowSearch, getCartCount } = useContext(ShopContext);
   const [showSidebarDropdown, setShowSidebarDropdown] = useState(true); 
-  const { user, logout } = useContext(AuthContext); // Get user and logout function
+  const { token, logout } = useAuth();
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
@@ -29,8 +29,8 @@ const Navbar = () => {
       <div className="flex items-center gap-3 md:gap-6">
         <FaSearch size={22} className="text-gray-700 cursor-pointer" onClick={() => setShowSearch(true)} />
 
-        {/* User Authentication Icon */}
-        {user ? (
+      
+        {token ? (
           <FaSignOutAlt 
             size={22} 
             className="text-gray-700 cursor-pointer" 
