@@ -48,7 +48,7 @@ const Navbar = () => {
         />
 
         <div className="group relative">
-          {token ? <FaSignOutAlt size={22} className="text-purple-700" onClick={logout()}/> : <Link to={"/login"}>
+          {token ? <FaSignOutAlt size={22} className="text-purple-700" onClick={logout}/> : <Link to={"/login"}>
             <FaUser size={22} className="text-purple-700 cursor-pointer" />
           </Link>}
         </div>

@@ -15,7 +15,7 @@ const ProductItem = ({ id, image, title, price }) => {
         <img
           className="w-52 h-52 object-contain transition-transform duration-300 ease-in-out"
           src={image}
-          alt={name}
+          alt={title}
         />
       </div>
       <p className="mt-3 text-sm font-semibold text-center">{title}</p>
